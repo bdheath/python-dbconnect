@@ -9,7 +9,7 @@ class objectCache:
 
 	_ttl = 10
 	_filename = None
-	_cache_folder = '/cache/'
+	_cache_folder = './'
 	_content = None
 	
 	def __init__(self, TTL = _ttl):
