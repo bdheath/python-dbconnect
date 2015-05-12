@@ -22,12 +22,12 @@ To add add caching to the query:
 
 ~~~python
 db = dbconnect.db()
-db.cache(60)            # Cache TTL in seconds
+db.cache(60)                                  # Cache TTL in seconds
 names = db.getDict("SELECT * FROM names WHERE type = %s", (person,))
-print db.cacheUsed()    # Return True if the query delivered cached results
+print db.cacheUsed()                          # Return True if the query delivered cached results
 ~~~
 
-And you can still do insert/replace/update queries:
+You can do INSERT, REPLACE, UPDATE and DELETE queries with the run() method:
 
 ~~~python
 names = ['Joe', 'John']
@@ -50,7 +50,12 @@ db.logErrors()                # Also log any errors in your query
 db.setLogFile('query.log')    # Set the log file (default is /queries.log)
 ~~~
 
-And you can use the caching layer for other things:
+If you want to do something sort of reckless, you can ignore MySQL errors (with or without logging them):
+~~~python
+db.ignoreErrors()
+~~~
+
+And you can use the caching layer for caching other parts of your script, too:
 ~~~python
 import object_cache
 
