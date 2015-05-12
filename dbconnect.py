@@ -185,7 +185,11 @@ class db:
 			logfile.write(msg)
 		
 	# Other
-		
+
+	def setLogFile(self, f):
+		self._query_log = f
+		return
+	
 	def testConnection(self):
 		try:
 			self._db.execute("SELECT 1")
