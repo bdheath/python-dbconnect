@@ -22,6 +22,7 @@ print db.cacheUsed()    # Return True if the query delivered cached results
 '''
 
 To add some basic query logging and debugging:
+
 ~~~python
 db = dbconnect.db()
 db.logSlowQueries(t = 10)     # Log queries that take more than t seconds
