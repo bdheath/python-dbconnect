@@ -5,7 +5,7 @@ Python wrapper for MySQL connections with MySQLdb. Simplifies connections and qu
 This wrapper abstracts commonly used MySQLdb functions
 
 For example, a simple query becomes:
-~~~
+~~~python
 import dbconnect
 
 db = dbconnect.db()
