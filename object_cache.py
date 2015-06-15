@@ -19,7 +19,7 @@ class objectCache:
 		self._ttl = TTL
 		return
 
-	def setCacheFolder(folder):
+	def setCacheFolder(self, folder):
 		self._cache_folder = folder
 		return
 		

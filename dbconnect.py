@@ -38,7 +38,7 @@ class db:
 		return
 		
 	def _connect(self, host = _dbhost, user = _dbuser, pwd = _dbpass ):
-		self._conn = MySQLdb.connect(self._dbhost, self._dbuser, self._dbpass)
+		self._conn = MySQLdb.connect(self._dbhost, self._dbuser, self._dbpass, charset='UTF8')
 		self._db = self._conn.cursor(MySQLdb.cursors.DictCursor)
 		self._is_connected = True
 		return
@@ -132,10 +132,19 @@ class db:
 		return
 	
 	# Caching functions (enable, disable, change timing)
-	def cache(self, ttl = _cache_ttl):
+	# Optionally, set the cache folder
+	def cache(self, ttl = _cache_ttl, cacheFolder = None):
 		self.setTTL(ttl)
 		self._use_cache = True
+		if cacheFolder != None:
+			self.setCacheFolder(cacheFolder)
 		return
+	
+	def setTTL(self, ttl):
+		self._cache_ttl = ttl
+		self._cache.setTTL(ttl)
+		return
+	
 	
 	def noCache(self):
 		self._use_cache = False
@@ -143,7 +152,11 @@ class db:
 	
 	def cacheUsed(self):
 		return self._cache_used
-		
+	
+	def setCacheFolder(self, folder):
+		self._cache.setCacheFolder(folder)
+		return
+	
 	# Logging
 	def logSlowQueries(self, on = True, t = _slow_query_time):
 		self._slow_queries = on
